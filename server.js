@@ -8,6 +8,7 @@ import user from './routes/user.js';
 import morgan from 'morgan';
 import errorMiddleWare from './middleware/errors.js'
 
+
 const app = express();
 
 if(process.env.NODE_ENV === 'development'){
