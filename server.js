@@ -3,7 +3,7 @@ import cors from 'cors';
 import 'dotenv/config.js';
 import {PORT} from './constants/index.js'
 import connectDatabase from "./config/db.js";
-import poll from './routes/poll.js';
+import office from "./routes/offices.js"
 import user from './routes/user.js';
 import morgan from 'morgan';
 import errorMiddleWare from './middleware/errors.js'
@@ -22,7 +22,7 @@ app.use(cors({
   //allowedHeaders: ['Content-Type']
 }));
 
-app.use(`/polls`, poll);
+app.use(`/offices`, office);
 app.use(`/users`, user)
 
 app.use(errorMiddleWare)
