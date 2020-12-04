@@ -22,12 +22,6 @@ const ArticleSchema = new Schema({
         min: ["3", "Must be more than three characters"],
         max: ["20", "Can not be longer than 20 characters"],
     },
-    ingress: {
-        type: String,
-        required: true,
-        min: ["3", "Must be more than three characters"],
-        max: ["20", "Can not be longer than 20 characters"],
-    },
     dato: {
         type: String,
         required: true,
