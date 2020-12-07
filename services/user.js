@@ -18,4 +18,5 @@ export const removeuser = async (id) => {
   user.remove();
 }
 
+export const checkToken = async (data) => User.findOne({'token': data.token}); // finne en bruker (returnerer ett objekt)
 export const login = async (data) => User.findOne({'email' : data.email, 'password' : data.password}); // finne en bruker (returnerer ett objekt)
