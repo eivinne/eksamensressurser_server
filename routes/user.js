@@ -6,14 +6,13 @@ import jwt from 'jsonwebtoken';
 const router = express.Router();
 const secret = "something";
 router.get('/:id', userController.get);
-
 router.get('/', userController.list);
 
 
 
 router.post('/create', function(req, res) {
-    const { email, password } = req.body;
-    const user = new User({ email, password });
+    const { firstname, lastname, email, password } = req.body;
+    const user = new User({ firstname, lastname, email, password });
     user.save(function(err) {
       if (err) {
         res.status(500)
@@ -66,7 +65,7 @@ router.post('/authenticate', function(req, res) {
   });
 });
 
-router.post('/checkToken', )
+router.post('/checkToken');
 router.put('/update/:id', userController.update);
 
 router.delete('/delete/:id', userController.remove);

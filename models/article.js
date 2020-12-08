@@ -46,7 +46,7 @@ const ArticleSchema = new Schema({
 ArticleSchema.virtual('articles', {
     ref: 'Article',
     localField: '_id',
-    foreignField: 'creator',
+    foreignField: 'forfatter',
     justOnce: true,
 });
 
