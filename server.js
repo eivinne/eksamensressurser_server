@@ -5,6 +5,7 @@ import {PORT} from './constants/index.js'
 import connectDatabase from "./config/db.js";
 import office from "./routes/offices.js"
 import user from './routes/user.js';
+import article from './routes/article.js'
 import morgan from 'morgan';
 import errorMiddleWare from './middleware/errors.js';
 import cookieParser from 'cookie-parser';
@@ -28,6 +29,7 @@ app.use(cors({
 
 app.use(`/offices`, office);
 app.use(`/users`, user);
+app.use(`/articles`, article);
 
 app.get('/home', withAuth, function(req, res) {
   res.sendStatus(200);

@@ -66,7 +66,7 @@ router.post('/authenticate', function(req, res) {
   });
 });
 
-
+router.post('/checkToken', )
 router.put('/update/:id', userController.update);
 
 router.delete('/delete/:id', userController.remove);

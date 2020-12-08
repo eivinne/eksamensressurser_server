@@ -1,4 +1,4 @@
-import { articleService } from "../services/article.js";
+import { articleService } from "../services/index.js";
 import catchAsyncErrors from "../middleware/catchAsync.js";
 import ErrorHandler from "../util/errorHandler.js";
 
