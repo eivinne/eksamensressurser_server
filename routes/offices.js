@@ -1,12 +1,12 @@
-/*import express from 'express';
+import express from 'express';
 import {officeController} from '../controller/index.js';
-
+import {withAuth} from '../middleware/middleware'
 const router = express.Router();
 
 //router.get('/:id', officeController.get);
 
-router.get('/', officeController.list);
+router.get('/',officeController.list);
 
 router.get('/:city', officeController.city);
 
-export default router;*/
+export default router;

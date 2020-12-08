@@ -29,7 +29,13 @@ const UserSchema = new mongoose.Schema({
     required: true,
     min: ["3", "name cant be shorter than 3 characters"],
     max: ["20", "name cant be longer than 20 characters"],
-  }
+  },
+  role: {
+    type: String,
+    required:false,
+    min: ["3", "name cant be shorter than 3 characters"],
+    max: ["20", "name cant be longer than 20 characters"],
+  },
 });
 
 // Used https://faizanv.medium.com/authentication-for-your-react-and-express-application-w-json-web-tokens-923515826e0 to handle password encryption. 
@@ -64,7 +70,7 @@ const UserSchema = new mongoose.Schema({
     });
   }
 
-UserSchema.virtual('polls', {
+UserSchema.virtual('Poll', {
     ref: 'Poll',
     localField: '_id',
     foreignField: 'creator',
