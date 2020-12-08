@@ -1,4 +1,4 @@
-import { articleService } from "../services/article.js";
+import { articleService } from "../services/index.js";
 import catchAsyncErrors from "../middleware/catchAsync.js";
 import ErrorHandler from "../util/errorHandler.js";
 
@@ -14,12 +14,12 @@ export const get = catchAsyncErrors(async (req, res, next) => {
 
   export const getAll = catchAsyncErrors(async (req, res, next) => {
     const allArticles = await articleService.getAllArticles();
-    res.status(200).json({ allArticles });
+    res.status(200).json(allArticles);
   });
   
   export const create = catchAsyncErrors(async (req, res, next) => {
     const article = await articleService.createArticle(req.body);
-    res.status(201).json(user);
+    res.status(201).json(article);
   });
   
   export const update = catchAsyncErrors(async (req, res, next) => {

@@ -22,7 +22,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --experimental-json-modules ./server.js"
-
   },
   "keywords": [],
   "author": "",

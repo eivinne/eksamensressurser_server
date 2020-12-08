@@ -1,6 +1,6 @@
+/*
 //import { officeService } from "../services/index.js";
 import catchAsyncErrors from "../middleware/catchAsync.js";
-import result from "../data/Offices.json"
 //import ErrorHandler from "../util/errorHandler.js";
 
 /*export const get = catchAsyncErrors(async (req, res, next) => {
@@ -12,7 +12,7 @@ import result from "../data/Offices.json"
     );
   }
   res.status(200).json(event);
-});*/
+});
 
 export const list = catchAsyncErrors(async (req, res, next) => {
  // const result = await officeService.listPolls();
@@ -23,6 +23,7 @@ export const city = catchAsyncErrors(async (req, res, next) => {
   // const result = await officeService.listPolls();
   console.log(req.params.city);
    res.status(200).json( result.filter((item)=>{return item.city.toLowerCase() === req.params.city.toLowerCase() }));
- });
+ });*/
+ 
 
 
