@@ -4,7 +4,7 @@ import 'dotenv/config.js';
 import {PORT} from './constants/index.js'
 import connectDatabase from "./config/db.js";
 //import office from "./routes/offices.js"
-import article from './routes/article.js';
+import office from './routes/article.js';
 import user from './routes/user.js';
 import article from './routes/article.js'
 import morgan from 'morgan';
