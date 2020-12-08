@@ -6,7 +6,6 @@ import connectDatabase from "./config/db.js";
 //import office from "./routes/offices.js"
 import article from './routes/article.js';
 import user from './routes/user.js';
-import article from './routes/article.js'
 import morgan from 'morgan';
 import errorMiddleWare from './middleware/errors.js';
 import cookieParser from 'cookie-parser';
@@ -28,7 +27,7 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(`/offices`, office);
+//app.use(`/offices`, office);
 app.use(`/users`, user);
 app.use(`/articles`, article);
 
