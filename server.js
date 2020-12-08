@@ -3,8 +3,7 @@ import cors from 'cors';
 import 'dotenv/config.js';
 import {PORT} from './constants/index.js'
 import connectDatabase from "./config/db.js";
-//import office from "./routes/offices.js"
-import office from './routes/article.js';
+import article from './routes/article.js';
 import user from './routes/user.js';
 import morgan from 'morgan';
 import errorMiddleWare from './middleware/errors.js';
@@ -27,7 +26,6 @@ app.use(cors({
   credentials: true,
 }));
 
-//app.use(`/offices`, office);
 app.use(`/users`, user);
 app.use(`/articles`, article);
 
