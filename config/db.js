@@ -8,6 +8,7 @@ const connectDatabase = async() => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
+            withCredentials: true,
         });
     }
     catch(error){

@@ -4,6 +4,19 @@ const { Schema } = mongoose;
 const saltRounds = 10;
 
 const UserSchema = new mongoose.Schema({
+  firstname: {
+    type:String,
+    required: true,
+    min: ["3", "Email must be longer than 3"],
+    max: ["25", "name cant be longer than 20 characters"],
+  },
+  lastName: {
+    type: String,
+    required: false,
+    min: ["3", "Email must be longer than 3"],
+    max: ["25", "name cant be longer than 20 characters"],
+
+  },
   email: {
     type: String,
     required: true,
@@ -17,6 +30,12 @@ const UserSchema = new mongoose.Schema({
     min: ["3", "name cant be shorter than 3 characters"],
     max: ["20", "name cant be longer than 20 characters"],
   },
+  confirmpassword:{
+    type:String,
+    required:true,
+    min: ["3", "name cant be shorter than 3 characters"],
+    max: ["20", "name cant be longer than 20 characters"],
+  }
 });
 
 // Used https://faizanv.medium.com/authentication-for-your-react-and-express-application-w-json-web-tokens-923515826e0 to handle password encryption. 
