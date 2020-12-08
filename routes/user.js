@@ -4,19 +4,20 @@ import User from '../models/user.js'
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
-const secret = "something";
+const secret = 'mysecretsshhh';
 router.get('/:id', userController.get);
 router.get('/', userController.list);
 
 
 
 router.post('/create', function(req, res) {
-    const { firstname, lastname, email, password } = req.body;
-    const user = new User({ firstname, lastname, email, password });
+    const { firstname, lastname, email, password, role } = req.body;
+    const user = new User({ firstname, lastname, email, password, role});
     user.save(function(err) {
       if (err) {
         res.status(500)
           .send("Error registering new user please try again.");
+          console.log(err);
       } else {
         res.status(200).send(req.body);
       }
@@ -24,8 +25,9 @@ router.post('/create', function(req, res) {
   });
 
 router.post('/authenticate', function(req, res) {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
   User.findOne({ email }, function(err, user) {
+    console.log(user);
     if (err) {
       console.error(err);
       res.status(500)
@@ -52,20 +54,18 @@ router.post('/authenticate', function(req, res) {
         } else {
           
           // Issue token
-          const payload = { email };
-          const token = jwt.sign(payload, secret, {
-            expiresIn: '2h'
-          });
-          const something = res.cookie('token', token, { httpOnly: true, maxAge: 60 * 60, sameSite: 'lax'})
+          console.log(user.email)
+          console.log(user.role)
+          const payload = { email: user.email, role: user.role };
+          const token = jwt.sign(payload, secret);
+          const something = res.cookie('token', token)
             .sendStatus(200);
-            console.log(something);
         }
       });
     }
   });
 });
 
-router.post('/checkToken');
 router.put('/update/:id', userController.update);
 
 router.delete('/delete/:id', userController.remove);

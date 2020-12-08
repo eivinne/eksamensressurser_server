@@ -12,8 +12,8 @@ import withAuth from './middleware/middleware.js'
 
 
 const app = express();
-
-
+const secret = 'mysecretsshhh';
+const refreshTokenSecret = [];
 if(process.env.NODE_ENV === 'development'){
   app.use(morgan('dev'));
 }
@@ -29,13 +29,45 @@ app.use(cors({
 app.use(`/users`, user);
 app.use(`/articles`, article);
 
-app.get('/home', withAuth, function(req, res) {
+app.get('/home', function(req, res) {
   res.sendStatus(200);
 });
 
-app.get('/checkToken', withAuth, function(req, res) {
-  res.sendStatus(200);
+
+
+app.get('/createArticle', withAuth, function(req, res) {
+
+console.log(req.user);
+  if(req.user.role !== "Admin"){
+   return res.sendStatus(403);
+  }else{
+   return res.sendStatus(200);
+
+  }
 });
+
+app.post('/createArticle', withAuth, function(req, res) {
+
+  console.log(req.user);
+    if(req.user.role !== "Admin"){
+     return res.sendStatus(403);
+    }else{
+     return res.sendStatus(200);
+  
+    }
+  });
+
+  app.get('/adminLogin', withAuth, function(req, res) {
+
+    console.log(req.user);
+      if(req.user.role !== "Admin"){
+       return res.sendStatus(403);
+      }else{
+       return res.sendStatus(200);
+    
+      }
+    });
+
 
 app.use(errorMiddleWare)
 
