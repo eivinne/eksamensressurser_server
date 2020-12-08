@@ -24,6 +24,7 @@ export default (err, req, res, next) => {
     if(err.name === "CastError"){
         const message = `Fant ikke ressursen du ser etter. Invalid ${err.path}`
         error = new ErrorHandler(message, 404);
+        
     }
 
     if(err.code === 11000) {
