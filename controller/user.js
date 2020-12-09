@@ -77,6 +77,7 @@ export const authenticate = catchAsyncErrors(async (req, res, next)=> {
           const payload = { email: user.email, role: user.role };
           const token = jwt.sign(payload, secret);
            res.cookie('token', token)
+           .cookie('role',user.role)
             .sendStatus(200);
         }
       });
@@ -112,4 +113,10 @@ export const login = catchAsyncErrors(async (req, res, next) =>{
       );
   }
   res.status(200).json(user);
+});
+
+export const logout = catchAsyncErrors(async (req, res, next) =>{
+  console.log("Not working");
+
+ return req.session.destroy();
 });
