@@ -12,10 +12,11 @@ export const get = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json(article);
   });
 
-  /*export const getAll = catchAsyncErrors(async (req, res, next) => {
+  export const getAll = catchAsyncErrors(async (req, res, next) => {
+    const userRole = req.cookies.role;
     const allArticles = await articleService.getAllArticles();
     res.status(200).json(allArticles);
-  });*/
+  });
 
   const PAGE_SIZE = 5;
   export const getAll = catchAsyncErrors(async (req, res, next) => {

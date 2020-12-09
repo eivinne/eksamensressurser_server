@@ -11,6 +11,8 @@ router.post('/create', userController.create);
 
 router.post('/login', userController.login);
 
+router.post('/logout', userController.logout);
+
 router.post('/authenticate',userController.authenticate);
 
 router.put('/update/:id', userController.update);

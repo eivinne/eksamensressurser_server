@@ -42,6 +42,28 @@ const withAuth = (req, res, next) => {
   }
 };
 
+const withAuthAsAdmin = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (token) {
+      jwt.verify(token, secret, (err, user) => {
+          if (err) {
+            console.log(err);
+              return res.sendStatus(403);
+              
+          }
+          req.user = user;
+          if(user.role == "Admin"){
+            next();
+          }else {
+            res.sendStatus(401);
+          }
+      });
+  } else {
+      console.log(err);
+      res.sendStatus(401);
+  }
+};
+
 
 
 export default withAuth;
