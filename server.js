@@ -59,6 +59,17 @@ app.post('/createArticle', withAuth, function(req, res) {
     }
   });
 
+  app.get('/createArticle', withAuth, function(req, res) {
+
+    console.log(req.user);
+      if(req.user.role !== "Admin"){
+       return res.sendStatus(403);
+      }else{
+       return res.sendStatus(200);
+    
+      }
+    });
+
   app.get('/adminLogin', withAuth, function(req, res) {
 
     console.log(req.user);
