@@ -12,10 +12,22 @@ export const get = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json(article);
   });
 
-  export const getAll = catchAsyncErrors(async (req, res, next) => {
+  /*export const getAll = catchAsyncErrors(async (req, res, next) => {
     const allArticles = await articleService.getAllArticles();
     res.status(200).json(allArticles);
-  });
+  });*/
+
+  const PAGE_SIZE = 5;
+  export const getAll = catchAsyncErrors(async (req, res, next) => {
+    const size = parseInt(PAGE_SIZE);
+    const page = parseInt(req.query.page ? req.query.page : 1);
+
+    console.log(req);
+
+    const allArticlesPaginated = await articleService.getAllArticlesPaginated(size, page);
+
+    res.status(200).json(allArticlesPaginated);
+  })
   
   export const create = catchAsyncErrors(async (req, res, next) => {
     const article = await articleService.createArticle(req.body);

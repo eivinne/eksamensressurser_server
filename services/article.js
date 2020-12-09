@@ -17,3 +17,15 @@ export const removeArticle = async (id) => {
   const article = await Article.findById(id);
   article.remove();
 }
+
+export const getAllArticlesPaginated = async (size, page) => {
+
+    const count = await Article.count();
+    const articles = await Article.find().skip(size * (page - 1)).limit(size);
+    return {
+      page,
+      size,
+      pages: Math.ceil(count / size),
+      articles
+    };
+};

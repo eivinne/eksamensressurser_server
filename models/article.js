@@ -40,6 +40,9 @@ const ArticleSchema = new Schema({
         min: ["3", "Must be more than three characters"],
         max: ["20", "Can not be longer than 20 characters"],
     },
+    isSecret: {
+        type: Boolean,
+    },
     
 });
 
