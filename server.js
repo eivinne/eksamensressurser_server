@@ -37,7 +37,7 @@ app.get('/home', function(req, res) {
 
 
 
-app.get('/createArticle', withAuth, function(req, res) {
+app.get('/createArticle', auth.withAuth, function(req, res) {
 
   if(req.cookies.role !== "Admin"){
    return res.sendStatus(403);
@@ -47,7 +47,7 @@ app.get('/createArticle', withAuth, function(req, res) {
   }
 });
 
-app.post('/createArticle', withAuth, function(req, res) {
+app.post('/createArticle', auth.withAuth, function(req, res) {
   console.log(req.cookies.role);
     if(req.cookies.role !== "Admin"){
      return res.sendStatus(403);
@@ -57,7 +57,7 @@ app.post('/createArticle', withAuth, function(req, res) {
     }
   });
 
-  app.get('/createArticle', withAuth, function(req, res) {
+  app.get('/createArticle', auth.withAuth, function(req, res) {
 
       if(req.user.role !== "Admin"){
        return res.sendStatus(403);
@@ -67,7 +67,7 @@ app.post('/createArticle', withAuth, function(req, res) {
       }
     });
 
-  app.get('/adminLogin', withAuth, function(req, res) {
+  app.get('/adminLogin', auth.withAuth, function(req, res) {
 
       if(req.cookies.role !== "Admin"){
        return res.sendStatus(403);
