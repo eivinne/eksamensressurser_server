@@ -2,6 +2,7 @@ import path from 'path';
 import { imageService } from '../services/index.js';
 import catchAsyncErrors from '../middleware/catchAsync.js';
 import ErrorHandler from '../util/errorHandler.js';
+import { Console } from 'console';
 
 export const create = catchAsyncErrors(async (req, res, next) => {
   if (!req.file) {
@@ -15,8 +16,9 @@ export const create = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const get = catchAsyncErrors(async (req, res, next) => {
-
+  console.log("get",req.params.id)
   const image = await imageService.getImageById(req.params.id);
+  console.log(image);
   if (!image) {
     return next(new ErrorHandler('Fant ikke bildefil', 404));
   }
@@ -25,7 +27,7 @@ export const get = catchAsyncErrors(async (req, res, next) => {
     'Content-Type': image.file_mimetype,
   });
 
-  console.log(__dirname)
+  console.log("abc",path.join(path.resolve(),"..",image.file_path));
   res.status(200)
-    .sendFile(path.join('C:\\Schoul\\Webapplikasjoner\\webeksamen_server\\eksamensressurser_server',image.file_path));
+    .sendFile(path.join(path.resolve(),"..",image.file_path));
 });

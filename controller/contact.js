@@ -19,7 +19,6 @@ export const get = catchAsyncErrors(async (req, res, next) => {
   
   export const create = catchAsyncErrors(async (req, res, next) => {
     const contact = await contactService.createContact(req.body);
-    console.log(req.body)
     res.status(201).json(contact);
   });
   
