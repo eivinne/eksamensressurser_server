@@ -77,7 +77,7 @@ export const authenticate = catchAsyncErrors(async (req, res, next)=> {
           const payload = { email: user.email, role: user.role };
           const token = jwt.sign(payload, secret);
            res.cookie('token', token)
-           .cookie('role',user.role)
+           .cookie('role',user.role).cookie('email',user.email).cookie('name',user.firstname)
             .sendStatus(200);
         }
       });

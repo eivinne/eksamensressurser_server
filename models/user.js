@@ -3,6 +3,10 @@ import bcrypt from "bcrypt";
 const { Schema } = mongoose;
 const saltRounds = 10;
 
+var validateEmail = function(email) {
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email)
+};
 const UserSchema = new mongoose.Schema({
   firstname: {
     type:String,
@@ -22,7 +26,9 @@ const UserSchema = new mongoose.Schema({
     required: true,
     min: ["3", "Email must be longer than 3"],
     max: ["20", "name cant be longer than 20 characters"],
-    unique: true,
+    required: 'Email address is required',
+    validate: [validateEmail, 'Please fill a valid email address'],
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
   },
   password: {
     type: String,
