@@ -1,3 +1,7 @@
+/*
+Image upload/download was the last thing we where working on and is not fully completed. The code snippets for image upload/download are gotten from the dropbox "Leksjon 13".
+*/
+
 import path from 'path';
 import { imageService } from '../services/index.js';
 import catchAsyncErrors from '../middleware/catchAsync.js';
@@ -15,6 +19,8 @@ export const create = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+
+
 export const get = catchAsyncErrors(async (req, res, next) => {
   console.log("get",req.params.id)
   const image = await imageService.getImageById(req.params.id);
@@ -27,7 +33,6 @@ export const get = catchAsyncErrors(async (req, res, next) => {
     'Content-Type': image.file_mimetype,
   });
 
-  console.log("abc",path.join(path.resolve(),"..",image.file_path));
   res.status(200)
     .sendFile(path.join(path.resolve(),"..",image.file_path));
 });

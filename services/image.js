@@ -1,3 +1,7 @@
+/*
+Image upload/download was the last thing we where working on and is not fully completed. The code snippets for image upload/download are gotten from the dropbox "Leksjon 13".
+*/
+
 import Image from '../models/image.js';
 
 export const uploadImage = async (data) => {
