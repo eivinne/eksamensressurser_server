@@ -18,10 +18,12 @@ export const removeArticle = async (id) => {
   article.remove();
 }
 
-export const getAllArticlesPaginated = async (size, page) => {
+export const getAllArticlesPaginated = async (size, page, showSecret) => {
 
     const count = await Article.count();
-    const articles = await Article.find().skip(size * (page - 1)).limit(size);
+    const query = showSecret ? {} : {isSecret: false};
+
+    const articles = await Article.find(query).skip(size * (page - 1)).limit(size);
     return {
       page,
       size,

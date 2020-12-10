@@ -6,13 +6,14 @@ import connectDatabase from "./config/db.js";
 import article from './routes/article.js';
 import user from './routes/user.js';
 import contact from './routes/contact.js';
+import image from './routes/image.js';
 
 import morgan from 'morgan';
 import errorMiddleWare from './middleware/errors.js';
 import cookieParser from 'cookie-parser';
-import withAuth from './middleware/middleware.js'
+import {auth} from './middleware/index.js'
 
-
+//const multer = require('multer');
 const app = express();
 const secret = 'mysecretsshhh';
 const refreshTokenSecret = [];
@@ -31,15 +32,15 @@ app.use(cors({
 app.use(`/users`, user);
 app.use(`/articles`, article);
 app.use(`/contact`, contact);
+app.use(`/image`, image);
 app.get('/home', function(req, res) {
   res.sendStatus(200);
 });
 
 
 
-app.get('/createArticle', withAuth, function(req, res) {
+app.get('/createArticle', auth.withAuth, function(req, res) {
 
-console.log(req.user);
   if(req.user.role !== "Admin"){
    return res.sendStatus(403);
   }else{
@@ -48,9 +49,8 @@ console.log(req.user);
   }
 });
 
-app.post('/createArticle', withAuth, function(req, res) {
+app.post('/createArticle', auth.withAuth, function(req, res) {
 
-  console.log(req.user);
     if(req.user.role !== "Admin"){
      return res.sendStatus(403);
     }else{
@@ -59,9 +59,8 @@ app.post('/createArticle', withAuth, function(req, res) {
     }
   });
 
-  app.get('/createArticle', withAuth, function(req, res) {
+  app.get('/createArticle', auth.withAuth, function(req, res) {
 
-    console.log(req.user);
       if(req.user.role !== "Admin"){
        return res.sendStatus(403);
       }else{
@@ -70,9 +69,8 @@ app.post('/createArticle', withAuth, function(req, res) {
       }
     });
 
-  app.get('/adminLogin', withAuth, function(req, res) {
+  app.get('/adminLogin', auth.withAuth, function(req, res) {
 
-    console.log(req.user);
       if(req.user.role !== "Admin"){
        return res.sendStatus(403);
       }else{

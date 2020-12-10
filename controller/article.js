@@ -13,12 +13,13 @@ export const get = catchAsyncErrors(async (req, res, next) => {
   });
 
 
-  const PAGE_SIZE = 5;
+  const PAGE_SIZE = 200;
   export const getAll = catchAsyncErrors(async (req, res, next) => {
     const size = parseInt(PAGE_SIZE);
     const page = parseInt(req.query.page ? req.query.page : 1);
+    const showSecret = req.cookies.role ? true : false;
 
-    const allArticlesPaginated = await articleService.getAllArticlesPaginated(size, page);
+    const allArticlesPaginated = await articleService.getAllArticlesPaginated(size, page, showSecret);
 
     res.status(200).json(allArticlesPaginated);
   })
